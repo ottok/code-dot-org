@@ -30,6 +30,8 @@ angular: teacherDashboard
 
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/',                  {templateUrl: '/teacher-dashboard/landing'});
+    $routeProvider.when('/:id',               {templateUrl: '/teacher-dashboard/section',
+                                               controller: 'SectionDetailController'});
     $routeProvider.when('/sections',          {templateUrl: '/teacher-dashboard/sections',
                                                controller: 'SectionsController'});
     $routeProvider.when('/sections/:id',      {templateUrl: '/teacher-dashboard/section',
