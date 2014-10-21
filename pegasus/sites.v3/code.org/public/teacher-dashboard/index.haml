@@ -264,6 +264,8 @@ angular: teacherDashboard
 
     $scope.gender_list = {f: '#{I18n.t('dashboard_students_female')}', m: '#{I18n.t('dashboard_students_male')}'};
 
+    $scope.language_list = {}; // fetch list from user settings page
+
     $scope.bulk_import = {editing: false, students: ''};
 
     $scope.edit = function(student) {

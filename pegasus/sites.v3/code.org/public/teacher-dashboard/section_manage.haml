@@ -4,7 +4,7 @@ theme: none
 ---
 
 %div{style: "padding-left:20px"}
- 
+
   :css
     th.manage-th {
       padding-top: 5px;
@@ -30,7 +30,7 @@ theme: none
       display: none;
     }
 
-    input.ng-invalid-required + span.required, 
+    input.ng-invalid-required + span.required,
     select.ng-invalid-required + span.required {
       display: inline;
       position: absolute;
@@ -55,10 +55,11 @@ theme: none
 
   %table{style: "width:950px; table-layout:fixed;", 'ng-show' => 'section.students.length > 0', "ng-form" => "allForm"}
     %colgroup
-      %col{width: "300"}/
-      %col{width: "100"}/
-      %col{width: "100"}/
-      %col{width: "200"}/
+      %col{width: "250"}/
+      %col{width: "70"}/
+      %col{width: "70"}/
+      %col{width: "130"}/
+      %col{width: "180"}/
       %col{width: "250"}/
     %tr
       %th.manage-th
@@ -67,6 +68,8 @@ theme: none
         %a{href: "", "ng-click" => "order = 'age'"}= I18n.t('dashboard_students_age')
       %th.manage-th
         %a{href: "", "ng-click" => "order = 'gender'"}= I18n.t('dashboard_students_gender')
+      %th.manage-th
+        %a{href: "", "ng-click" => "order = 'language'"}= I18n.t('dashboard_students_language')
       %th.manage-th
         %span{"ng-if" => "section.login_type !== 'email'"}= I18n.t('dashboard_students_secret')
         %span{"ng-if" => "section.login_type === 'email'"}= I18n.t('dashboard_students_password')
@@ -91,6 +94,10 @@ theme: none
         %span{"ng-hide" => "student.editing"} {{gender_list[student.gender]}}
         %span{"ng-show" => "student.editing"}
           %select{"ng-model" => "student.gender", "ng-options"=>"k as v for (k,v) in gender_list"}
+      %td
+        %span{"ng-hide" => "student.editing"} {{student.language}}
+        %span{"ng-show" => "student.editing"}
+          %select{"ng-model" => "student.language", "ng-options"=>"value for value in language_list"}
       %td
         %span{"ng-if" => "section.login_type !== 'email'"}
           %button.btn.btn-white{"ng-click" => "student.showing_password = true",
@@ -119,7 +126,7 @@ theme: none
           = I18n.t('dashboard_action_confirm')
           %button.btn.btn-danger{"ng-click"=>'del(student)'}= I18n.t('dashboard_action_delete_yes')
           %button.btn.btn-white{"ng-click"=>'student.confirmDelete = false'}= I18n.t('dashboard_action_delete_no')
-        %span{"ng-hide" => "student.confirmDelete"}          
+        %span{"ng-hide" => "student.confirmDelete"}
           %button.btn.btn-white{"ng-click" => "edit(student)", "ng-hide" => "student.editing"}= I18n.t('dashboard_action_edit')
           %button.btn.btn-primary{"ng-click" => "save(student)", "ng-show" => "student.editing", "ng-disabled" => "form.$invalid"}= I18n.t('dashboard_action_save')
           %button.btn.btn-white{"ng-click" => "cancel(student)", "ng-show" => "student.editing"}= I18n.t('dashboard_action_cancel')
@@ -158,4 +165,3 @@ theme: none
         http://#{canonical_hostname('studio.code.org')}/join/{{section.code}}
     %p
       = I18n.t('dashboard_students_no_email')
-
